@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <!-- Google -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="529630771722-rs66g5ar5ggl4tnsv7sbee67eg3dvj4l.apps.googleusercontent.com"
+    />
+  </head>
+  <body>
+    <h2>Login Page</h2>
+    <br />
+    <div class="login">
+      <form id="login">
+        <label><b>User Name </b> </label>
+        <input type="text" name="Uname" id="Uname" placeholder="Username" />
+        <br /><br />
+        <label><b>Password </b> </label>
+        <input type="Password" name="Pass" id="Pass" placeholder="Password" />
+        <br /><br />
+        <input type="button" name="log" id="log" value="Log In Here" />
+        <br /><br />
+        <input type="checkbox" id="check" />
+        <span>Remember me</span>
+        <br />
+        <br />
+        <!-- Google -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <script>
+          function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log("Name: " + profile.getName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
+          }
+        </script>
+        <a href="#" onclick="signOut();">Sign out</a>
+        <script>
+          function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log("User signed out.");
+            });
+          }
+        </script>
+      </form>
+    </div>
+  </body>
+</html>
